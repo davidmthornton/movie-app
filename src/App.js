@@ -20,7 +20,17 @@ class App extends Component {
     .then(response => this.setState({movieDetails: response.data}))
   }
 
-  render () {
+
+
+      PosterImage() {
+        if(this.state.movieDetails !== "") { 
+          return <img src={this.state.movieDetails.Poster} alt="Movie poster"/>;
+        }else{
+          return <p></p>;
+        }
+      }
+
+    render () {
     return (
       <div className="App">
           <h1>Search by movie title</h1><br />
@@ -33,7 +43,8 @@ class App extends Component {
               <h3>Year: {this.state.movieDetails.Year}</h3>
               <h3>Rating: {this.state.movieDetails.Rated}</h3>
               <h3>{this.state.movieDetails.Plot}</h3>
-              <img src={this.state.movieDetails.Poster} alt="Movie poster"/>
+              {this.PosterImage()}
+              
           </div>
       </div>
     );
